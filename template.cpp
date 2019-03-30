@@ -12,17 +12,14 @@
 	// TODO: fill this
 }
 
-{classname}::{classname}({classname}&& other){
-	// TODO: fill this
+{classname}::{classname}({classname}&& other)
+	: {classname}() {
+	swap(*this, other);
 }
 
 {classname}& {classname}::operator=({classname} other){
 	swap(*this, other);
 	return this;
-}
-
-{classname}& {classname}::operator=({classname}&& other){
-	// TODO: fill this
 }
 
 {classname}::~{classname}(){
