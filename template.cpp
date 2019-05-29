@@ -34,4 +34,4 @@ void swap({classname}& first, {classname}& second){
 
 {ioperators_impl}
 
-{operator_impl}
+{operators_impl}

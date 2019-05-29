@@ -1,0 +1,1 @@
+{classname}& operator{op}(const {classname}& first, const {classname}& second);

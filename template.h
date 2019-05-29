@@ -11,7 +11,6 @@ class {classname} {
 		{classname}(const {classname}& other);
 		{classname}({classname}&& other);
 		{classname}& operator=({classname} other);
-		{classname}& operator=({classname}&& other);
 		~{classname}();
 
 		friend void swap({classname}& first, {classname}& second);

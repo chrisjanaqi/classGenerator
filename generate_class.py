@@ -5,26 +5,52 @@ Simple adaptative script to generate c++ classes with header
 import argparse
 
 
-ATTRIBS = "\t\t{type} {attribname};\n"
-
-IOP_DEF = "\t\t{classname}& operator{op}=({classname}& other);\n"
-
-ARITH_DEF = "{classname}& operator{op}({classname}& first, {classname}& second);\n"
-
-COMP_DEF = "bool operator{op}({classname}& first, {classname}& second);\n"
-
-IOP_IMPL = """
-{classname}& {classname}::operator{op}=({classname}& other){
-\t// TODO: fill this
-}
-"""
+ATTRIBS = "\t\t{type} {name};\n"
 
 OPERATORS = ['+', '-', '*', '/', '%',               # Arithmetic operators
              '==', '!=', '>', '<', '>=', '<=']      # Comparison operators
 
 
+def chunks(iterable: list, chunksize: int):
+    for i in range(0, len(iterable), chunksize):
+        yield iterable[i:i+chunksize]
+
+
 def generate_class(classname: str, attributes: list, operators: list):
-    raise NotImplementedError()
+    output_cpp = "".join([classname, '.cpp'])
+    output_h = "".join([classname], '.h'])
+    # Reading template files
+    with open('template.cpp', 'r') as file:
+        template_cpp: str = file.read()
+    with open('template.h', 'r') as file:
+        template_h: str = file.read()
+    with open('ioperator.def', 'r') as file:
+        template_iop_def: str = file.read()
+    with open('ioperator.impl', 'r') as file:
+        template_iop_impl: str = file.read()
+    with open('operator.def', 'r') as file:
+        template_op_def: str = file.read()
+    with open('operator.impl', 'r') as file:
+        template_op_impl: str = file.read()
+
+    attribs = "".join([ATTRIBS.format(type=, name=) for a_type, a_name in chunks(attributes, 2)])
+    iop_impl = "".join([template_iop_impl.format(classname=classname, op=op) for op in operators])
+    iop_def = "".join([template_iop_def.format(classname=classname, op=op) for op in operators])
+    op_impl = "".join([template_op_impl.format(classname=classname, op=op) for op in operators])
+    op_def = "".join([template_iop_def.format(classname=classname, op=op) for op in operators])
+
+    class_cpp = template_cpp.format(
+            classname=classname,
+            ioperators_impl=iop_impl,
+            operators_impl = op_impl
+    )
+    class_h = template_h.format(
+            up_classname=classname.upper(),
+            classname=classname,
+            attributes=attribs,
+            ioperators_def=iop_def,
+            operators_def=op_def
+    )
 
 
 def build_parser():
@@ -60,13 +86,14 @@ def main():
     parser = build_parser()
     args = parser.parse_args()
     print(args)
-    if !args.interactive:
+    if not args.interactive:
         args.attribs = [] if args.attribs is None else args.attribs
         args.operators = [] if args.operators is None else args.operators
         generate_class(args.classname, args.attribs, args.operators)
         assert(len(args.attribs) % 2 == 0)
-
+        generate_class(args.classname, args.attribs, args.operators)
 
 
 if __name__ == "__main__":
     main()
+
