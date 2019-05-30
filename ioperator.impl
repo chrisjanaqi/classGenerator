@@ -1,5 +1,5 @@
-{classname}& {classname}::operator{op}=(const {classname}& other){
+{classname}& {classname}::operator{op}=(const {classname}& other){{
 	// TODO: fill this
-}
+}}
 
 

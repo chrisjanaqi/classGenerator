@@ -6,32 +6,33 @@
 /* CONSTRUCTORS */
 {classname}::{classname}():
 	// TODO: fill this
-{}
+{{}}
 
-{classname}::{classname}(const {classname}& other){
+{classname}::{classname}(const {classname}& other){{
 	// TODO: fill this
-}
+}}
 
 {classname}::{classname}({classname}&& other)
-	: {classname}() {
+	: {classname}() {{
 	swap(*this, other);
-}
+}}
 
-{classname}& {classname}::operator=({classname} other){
+{classname}& {classname}::operator=({classname} other){{
 	swap(*this, other);
-	return this;
-}
+	return *this;
+}}
 
-{classname}::~{classname}(){
+{classname}::~{classname}(){{
 	// TODO: fill this
-}
+}}
 
 /* swap function */
-void swap({classname}& first, {classname}& second){
+void swap({classname}& first, {classname}& second){{
 	// TODO: fill this
 	using std::swap;
-}
+}}
 
 {ioperators_impl}
 
 {operators_impl}
+

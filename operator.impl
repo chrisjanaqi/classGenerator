@@ -1,5 +1,5 @@
-{classname}& operator{op}(const {classname}& first, const {classname}& second){
+{classname}& operator{op}(const {classname}& first, const {classname}& second){{
 	{classname} result(first);
 	result {op}= second;
 	return result;
-}
+}}
