@@ -18,8 +18,8 @@ def chunks(iterable: list, chunksize: int):
 
 
 def generate_class(classname: str, attributes: list, operators: list):
-    output_cpp = "".join([classname, '.cpp'])
-    output_h = "".join([classname, '.h'])
+    output_cpp = "".join([output, classname, '.cpp'])
+    output_h = "".join([output, classname, '.h'])
     # Reading template files
     with open('template.cpp', 'r') as file:
         template_cpp: str = file.read()
