@@ -1,0 +1,8 @@
+/**
+ * Internal {op} 
+ * :param first: first parameter
+ * :param second: second parameter
+ * :returns : a new {classname} object
+ */
+{classname} operator{op}(const {classname}& first, const {classname}& second);
+

@@ -1,0 +1,5 @@
+		/**
+		 * In place {op} used also in the internal binary {op}
+		 */
+		{classname}& operator{op}=(const {classname} &other);
+
